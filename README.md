@@ -36,31 +36,6 @@ In this example, the Order class needs to store information in the database and 
 
 A deep understanding of the service container is essential to building a powerful, large application.
 
-Lets take a look at testing example:
-```javascript
-let app = new Container;
-app.bind('Database', database);
-app.bind('Mailer', mailer);
-app.bind('Order', Order);
-
-app.make('Order').create();
-// Injecting database..
-// Injecting mailer..
-// Creating order..
-// Create db record..
-// Send emails..
-
-app.bind('Database', fakeDatabase);
-app.bind('Mailer', fakeMailer);
-
-app.make('Order').create();
-// Injecting fake database..
-// Injecting fake mailer..
-// Creating order..
-// Faking db creation..
-// Faking mailers work..
-```
-
 ## Binding
 The most basic container method is `.bind`. Using this method you can *bind* class to the service container.
 
@@ -118,3 +93,32 @@ Class Order {
 ```
 
 This way if for some reasons `mongo` server go down - we can swap it with different implementation `app.bind('Database', MysqlDatabase);`.
+
+#### Lets take a look at testing example:
+```javascript
+const app = new Container;
+
+app.bind('Database', Database);
+app.bind('Mailer', Mailer);
+app.bind('Order', Order);
+
+// Create real order and send emails
+app.make('Order').create();
+// Injecting database..
+// Injecting mailer..
+// Creating order..
+// Create db record..
+// Send emails..
+
+// Lets fake/mock database and mailer
+app.bind('Database', fakeDatabase);
+app.bind('Mailer', fakeMailer);
+
+app.make('Order').create();
+// Injecting fake database..
+// Injecting fake mailer..
+// Creating order..
+// Faking db creation..
+// Faking mailers work..
+```
+
