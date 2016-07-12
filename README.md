@@ -1,4 +1,6 @@
 
+Simple and easy service container.
+
 ## Introduction
 
 Service container is a powerful tool for managing class dependencies and performing dependency injection. Dependency injection is a fancy phrase that essentially means this: class dependencies are "injected" into the class via the constructor or, in some cases, "setter" methods.
@@ -92,7 +94,11 @@ Class Order {
 }
 ```
 
-This way if for some reasons `mongo` server go down - we can swap it with different implementation `app.bind('Database', MysqlDatabase);`.
+This way if for some reasons `mongo` server go down - we can swap it with different implementation:
+
+```javascript
+app.bind('Database', MysqlDatabase);
+```
 
 #### Lets take a look at testing example:
 ```javascript
