@@ -1,9 +1,32 @@
+# Inverted Service Container
 
 **Service Container** is a tool for managing dependencies.  
-Behind the scenes it performs **Dependency Injection** *(a fancy phrase that means: if you see dependencies - try to "inject" them into the module)*.
 
-![alt Inversed highlevel overview][inversed-overview]
+> Behind the scenes it performs **Dependency Injection** - a fancy phrase that means:  
+> If you see dependencies - try to "inject" them into the module)
 
+## High Level Overview
+![alt Inversed High Level Overview][inversed-overview]
+
+Lets take a look at acctual code:
+```javascript
+// Initialize container
+const c = new Container;
+
+// Put items inside of it
+c.bind('Warior', Warior);
+c.bind('Sword', Sword);
+c.bind('Armor', Armor);
+c.bind('Helmet', Helmet);
+c.bind('Shield', Shield);
+c.bind('Horce', Horce);
+
+// Resolve "Warior" with all dependencies included
+c.make('Warior').attack(); // Attacking with my Sword!
+c.make('Warior').describeArmor(); // I'm wearing: Helmet and Shield.
+```
+
+See full example here: URL
 
 It acts like **central registry** in order to manage the components of the system and to act as a mediator whenever a module needs to load a dependency.  
 
@@ -32,7 +55,7 @@ The main advantage of this approach is an improved decoupling, especially for mo
 
 
 
-[inversed-overview]: https://raw.githubusercontent.com/ykrevnyi/container/docs/docs/ioc_container-1.jpg "Highlevel overview"
+[inversed-overview]: https://raw.githubusercontent.com/ykrevnyi/container/docs/docs/ioc_container-1.jpg "Inversed High Level Overview"
 
 
 
