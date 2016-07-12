@@ -1,4 +1,41 @@
 
+**Service Container** is a tool for managing dependencies.  
+Behind the scenes it performs **Dependency Injection** *(a fancy phrase that means: if you see dependencies - try to "inject" them into the module)*.
+
+![alt Inversed highlevel overview][inversed-overview]
+
+
+It acts like **central registry** in order to manage the components of the system and to act as a mediator whenever a module needs to load a dependency.  
+
+Using **Service Container**, each dependency, instead of being hardcoded into the module is received from the outside. This means that the module can be configured to use any dependency and therefore can be reused in different contexts.  
+
+Behind the scenes it performs *Dependency Injection* (a fancy phrase that means: if you see dependencies - try to "inject" them into the class).
+
+The main advantage of this approach is an improved decoupling, especially for modules depending on stateful instances.
+
+
+
+#### Pros and Cons
+- Decouple module from a particular dependency instance
+- Reuse each module with minimal effort
+- Testing module that uses DI is also greatly simplified - we can easily provide mocked dependencies and test our modules
+- In isoltion from the state of the reset of the system.
+
+
+#### Did you know?  
+> Important aspect is that dependency wiring responsibility is shifted from the bottom to the top of architecture. The idea is that high-level components are by nature less reusable than low-level components, and thats because the more we go up in the layers of an application the more a component becomes specific.  
+> The conventional way to see an application architecture, where high-level components own their lower-level dependencies, can be inverted, so that the lower-level components depend only on an interface, while the ownership of defining the implementation of a dependency is given to the hight-level components.
+
+
+
+
+
+
+
+[inversed-overview]: https://raw.githubusercontent.com/ykrevnyi/container/docs/docs/ioc_container-1.jpg "Highlevel overview"
+
+
+
 Simple and easy service container.
 
 ## Introduction
